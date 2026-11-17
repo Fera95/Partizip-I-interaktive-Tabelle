@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Partizip I – interaktive Tabelle</title>
+<style>
+:root{--bg:#f5f7fb;--surf:#fff;--ink:#1c2433;--mute:#5d6a80;--line:#d9e0ec;--acc:#2456c7;--accbg:#e6edfb;--ok:#1a7f4b;--okbg:#e3f5ea;--bad:#b3261e;--badbg:#fbe7e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121722;--surf:#1b2231;--ink:#e8edf7;--mute:#9aa7bf;--line:#2e394f;--acc:#7da2f5;--accbg:#232f4d;--ok:#5fd394;--okbg:#17342a;--bad:#f19990;--badbg:#3b1f1d}}
+:root[data-theme="dark"]{--bg:#121722;--surf:#1b2231;--ink:#e8edf7;--mute:#9aa7bf;--line:#2e394f;--acc:#7da2f5;--accbg:#232f4d;--ok:#5fd394;--okbg:#17342a;--bad:#f19990;--badbg:#3b1f1d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:2rem;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:1.25rem;margin:36px 0 10px}
+.sub{color:var(--mute);margin:0 0 22px;font-family:system-ui,sans-serif;font-size:.95rem}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surf)}
+table{border-collapse:collapse;width:100%;font-family:system-ui,sans-serif;font-size:.95rem}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accbg);color:var(--ink);font-weight:600}
+tr:last-child td{border-bottom:0}
+tr.row{cursor:pointer}
+tr.row:hover td,tr.row:focus td{background:var(--accbg)}
+tr.row:focus{outline:2px solid var(--acc);outline-offset:-2px}
+.ex{display:none;color:var(--mute);margin-top:6px}
+tr.open .ex{display:block}
+tr.open td:first-child{border-left:4px solid var(--acc)}
+.hint{font-size:.85rem;color:var(--mute);font-family:system-ui,sans-serif;margin:8px 0 0}
+.de{font-family:Georgia,serif;font-style:italic;color:var(--ink)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-family:system-ui,sans-serif}
+button{font:inherit;font-family:system-ui,sans-serif;cursor:pointer}
+.tab{padding:8px 14px;border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:999px;font-size:.9rem}
+.tab[aria-selected="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.tab:focus-visible,.opt:focus-visible,.reset:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.gen{display:flex;gap:8px;flex-wrap:wrap;font-family:system-ui,sans-serif;margin-bottom:10px}
+.gen input{flex:1;min-width:160px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surf);color:var(--ink);font:inherit}
+.gen output{display:block;width:100%;padding:12px 14px;border-radius:8px;background:var(--accbg);min-height:48px}
+.q{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px;font-family:system-ui,sans-serif}
+.q p{margin:0 0 10px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{padding:8px 14px;border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:8px}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.fb{margin:10px 0 0;font-size:.9rem;color:var(--mute);min-height:1.2em}
+.score{font-family:system-ui,sans-serif;font-weight:600;margin:6px 0 10px}
+.reset{padding:8px 14px;border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Partizip I</h1>
+<p class="sub">Das Partizip Präsens – klicke auf eine Zeile, um ein Beispiel zu sehen.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Thema</th><th>Erklärung</th></tr></thead>
+<tbody id="main"></tbody>
+</table></div>
+<p class="hint">Tipp: Mit Tab und Enter kannst du die Zeilen auch per Tastatur öffnen.</p>
+
+<h2>Partizip I und Partizip II im Vergleich</h2>
+<div class="tw"><table>
+<thead><tr><th></th><th>Partizip I</th><th>Partizip II</th></tr></thead>
+<tbody>
+<tr><td>Bedeutung</td><td>aktiv, gleichzeitig</td><td>passiv oder abgeschlossen</td></tr>
+<tr><td>Bildung</td><td>Infinitiv + <b>-d</b></td><td>ge- + Stamm + -t / -en</td></tr>
+<tr><td>Beispiel</td><td class="de">das kochende Wasser</td><td class="de">das gekochte Ei</td></tr>
+</tbody></table></div>
+
+<h2>Partizip I bilden</h2>
+<div class="gen">
+<input id="inf" placeholder="Infinitiv eingeben, z. B. lachen" aria-label="Infinitiv" autocomplete="off">
+<output id="out" aria-live="polite">Gib ein Verb ein.</output>
+</div>
+
+<h2>Adjektivendungen</h2>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="tw"><table><thead><tr><th>Kasus</th><th>Maskulin</th><th>Feminin</th><th>Neutrum</th><th>Plural</th></tr></thead><tbody id="decl"></tbody></table></div>
+
+<h2>Übung</h2>
+<div class="score" id="score">Punkte: 0 / 0</div>
+<div id="quiz"></div>
+<button class="reset" id="reset" type="button">Neu starten</button>
+</main>
+
+<script>
+var rows=[
+["Bildung","Infinitiv + -d","lachen → lachend, singen → singend"],
+["Bedeutung","Aktive Handlung, die gleichzeitig mit einer anderen geschieht","Er kam lachend herein."],
+["Als Adverb","Ohne Endung; beschreibt, wie etwas geschieht","Sie sprach weinend über ihren Hund."],
+["Als Adjektiv","Mit Adjektivendung nach Artikel, Genus und Kasus","das lachende Kind – ein singender Mann"],
+["Relativsatz","Kann durch einen Relativsatz im Präsens ersetzt werden","die wartenden Leute = die Leute, die warten"],
+["Ausnahmen","Nur sehr wenige","sein → seiend, tun → tuend"],
+["Feste Adjektive","Viele sind schon normale Adjektive","spannend, interessant, aufregend, überraschend"],
+["Typischer Fehler","Nicht für die Verlaufsform verwenden","Falsch: Ich bin laufend. Richtig: Ich laufe."]
+];
+var tb=document.getElementById('main');
+rows.forEach(function(r){
+ var tr=document.createElement('tr');tr.className='row';tr.tabIndex=0;
+ var td1=document.createElement('td');td1.innerHTML='<b></b>';td1.firstChild.textContent=r[0];
+ var td2=document.createElement('td');td2.textContent=r[1];
+ var ex=document.createElement('div');ex.className='ex de';ex.textContent=r[2];td2.appendChild(ex);
+ tr.appendChild(td1);tr.appendChild(td2);
+ function t(){tr.classList.toggle('open')}
+ tr.addEventListener('click',t);
+ tr.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+ tb.appendChild(tr);
+});
+
+var inf=document.getElementById('inf'),out=document.getElementById('out');
+inf.addEventListener('input',function(){
+ var v=inf.value.trim().toLowerCase();
+ if(!v){out.textContent='Gib ein Verb ein.';return}
+ if(v==='sein'){out.textContent='sein → seiend (Ausnahme)';return}
+ if(v==='tun'){out.textContent='tun → tuend (Ausnahme)';return}
+ if(!/(en|ern|eln|n)$/.test(v)){out.textContent='Das sieht nicht wie ein Infinitiv aus.';return}
+ out.textContent=v+' → '+v+'d';
+});
+
+var decl={
+"mit bestimmtem Artikel":[["Nominativ","der lachende Mann","die lachende Frau","das lachende Kind","die lachenden Kinder"],["Akkusativ","den lachenden Mann","die lachende Frau","das lachende Kind","die lachenden Kinder"],["Dativ","dem lachenden Mann","der lachenden Frau","dem lachenden Kind","den lachenden Kindern"],["Genitiv","des lachenden Mannes","der lachenden Frau","des lachenden Kindes","der lachenden Kinder"]],
+"mit unbestimmtem Artikel":[["Nominativ","ein lachender Mann","eine lachende Frau","ein lachendes Kind","lachende Kinder"],["Akkusativ","einen lachenden Mann","eine lachende Frau","ein lachendes Kind","lachende Kinder"],["Dativ","einem lachenden Mann","einer lachenden Frau","einem lachenden Kind","lachenden Kindern"],["Genitiv","eines lachenden Mannes","einer lachenden Frau","eines lachenden Kindes","lachender Kinder"]]
+};
+var tabs=document.getElementById('tabs'),dt=document.getElementById('decl');
+function show(k){
+ Array.prototype.forEach.call(tabs.children,function(b){b.setAttribute('aria-selected',b.dataset.k===k)});
+ dt.innerHTML='';
+ decl[k].forEach(function(r){var tr=document.createElement('tr');r.forEach(function(c,i){var td=document.createElement('td');td.textContent=c;if(i>0)td.className='de';tr.appendChild(td)});dt.appendChild(tr)});
+}
+Object.keys(decl).forEach(function(k){
+ var b=document.createElement('button');b.type='button';b.className='tab';b.setAttribute('role','tab');b.dataset.k=k;b.textContent=k;
+ b.addEventListener('click',function(){show(k)});tabs.appendChild(b);
+});
+show("mit bestimmtem Artikel");
+
+var qs=[
+["Bilde das Partizip I von „spielen“.",["spielend","gespielt","spielent"],0,"Infinitiv + d."],
+["Welcher Satz ist richtig?",["Ich bin laufend.","Ich laufe.","Ich bin gelaufend."],1,"Das Partizip I bildet keine Verlaufsform."],
+["„die wartenden Leute“ = die Leute, …",["die gewartet haben","die warten","die werden warten"],1,"Partizip I entspricht einem Relativsatz im Präsens."],
+["Welches Wort ist Partizip I?",["gekocht","kochend","gekochend"],1,"das kochende Wasser = Wasser, das kocht."],
+["Partizip I von „sein“:",["seiend","gewesen","seind"],0,"Ausnahme: sein → seiend."]
+];
+var qd=document.getElementById('quiz'),sc=document.getElementById('score'),pts=0,done=0;
+function build(){
+ qd.innerHTML='';pts=0;done=0;sc.textContent='Punkte: 0 / 0';
+ qs.forEach(function(q){
+  var box=document.createElement('div');box.className='q';
+  var p=document.createElement('p');p.textContent=q[0];box.appendChild(p);
+  var o=document.createElement('div');o.className='opts';box.appendChild(o);
+  var fb=document.createElement('div');fb.className='fb';fb.setAttribute('aria-live','polite');box.appendChild(fb);
+  var answered=false;
+  q[1].forEach(function(t,i){
+   var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=t;
+   b.addEventListener('click',function(){
+    if(answered)return;answered=true;done++;
+    var ok=i===q[2];if(ok)pts++;
+    b.classList.add(ok?'ok':'bad');
+    if(!ok)o.children[q[2]].classList.add('ok');
+    fb.textContent=(ok?'Richtig! ':'Leider falsch. ')+q[3];
+    sc.textContent='Punkte: '+pts+' / '+done;
+   });
+   o.appendChild(b);
+  });
+  qd.appendChild(box);
+ });
+}
+document.getElementById('reset').addEventListener('click',build);
+build();
+</script>
+</body>
+</html>
